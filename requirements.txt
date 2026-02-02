@@ -1,6 +1,5 @@
 streamlit
-google-genai
+requests
 PyPDF2
 python-docx
-requests
 googlesearch-python
