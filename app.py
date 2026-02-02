@@ -41,7 +41,7 @@ def extract_text_from_docx(file):
 def analyze_resume_with_gemini(text, api_key):
     """Uses Gemini Pro to extract skills and job titles."""
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     
     prompt = f"""
     You are an expert career coach. Analyze the following resume text.
@@ -224,4 +224,5 @@ if uploaded_file and api_key:
                     st.warning("No direct links found matching strict criteria. Try broadening your resume keywords.")
 
 elif not api_key:
+
     st.warning("Please enter your Gemini API Key in the sidebar to proceed.")
