@@ -170,4 +170,19 @@ if uploaded_file and api_key:
                 
                 for i, query in enumerate(queries):
                     try:
-                        results = search(query, num=5, stop=5, pause=2
+                        # Fixed line: ensured closing parenthesis and correct float for pause
+                        results = search(query, num=5, stop=5, pause=2.0)
+                        
+                        found_links = False
+                        for url in results:
+                            if is_valid_link(url):
+                                st.markdown(f"- [{url}]({url})")
+                                found_links = True
+                        
+                        if not found_links:
+                            st.caption(f"No direct links found for {st.session_state['job_titles'][i]}")
+
+                    except Exception as e:
+                        st.warning(f"Search error: {e}")
+                    
+                    progress.progress((i + 1) / len(queries))
